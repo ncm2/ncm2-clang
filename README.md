@@ -2,7 +2,7 @@ This is a temporary repo ported from
 [ncm-clang](https://github.com/roxma/ncm-clang).
 
 I'm going to write a new c/c++ completion plugin based on libclang instead of
-the clang executable. But before that happen, I still needs a decent C/C++
+the clang executable. But before that happen, I still need a decent C/C++
 completion plugin.
 
 ## Install
