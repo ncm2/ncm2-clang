@@ -6,6 +6,7 @@ import re
 from os.path import dirname
 from ncm2_clang import args_from_cmake, args_from_clang_complete
 import vim
+import time
 
 logger = getLogger(__name__)
 
@@ -58,6 +59,7 @@ class Source(Ncm2Source):
                 run_dir = directory
 
         # args = args + self._clang_opts
+        start = time.time()
         logger.debug("args: %s", args)
 
         proc = subprocess.Popen(args=args,
@@ -70,7 +72,9 @@ class Source(Ncm2Source):
 
         result = result.decode()
 
-        logger.debug("result: [%s]", result)
+        end = time.time()
+        logger.debug(
+            "code-completion time: %s, result: [%s]", end - start, result)
 
         matches = []
 
@@ -166,7 +170,8 @@ class Source(Ncm2Source):
         txt = txt.replace('$', r'\$')
         txt = txt.replace('}', r'\}')
         txt = txt.replace('\\', '\\\\')
-        return '${%s:%s}'  % (num, txt)
+        return '${%s:%s}' % (num, txt)
+
 
 source = Source(vim)
 
